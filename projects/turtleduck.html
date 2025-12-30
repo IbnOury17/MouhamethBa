@@ -43,22 +43,30 @@
 
 <h3 class="major">Project Overview</h3>
 <p>
-Ashton the Turtleduck is an electromechanical project designed to demonstrate how
-electrical conductivity in ionized water can be used to activate a circuit.
-The system combines mechanical design, electrical theory, and experimental validation.
+Ashton the Turtleduck is a hands-on electromechanical project built to explore what really happens when electrical theory leaves 
+	the classroom and meets the real world. The goal was simple on paper: use ionized water to complete an electrical circuit and power a motor. 
+	In practice, it quickly became an exercise in mechanical design, electrical trade-offs, and experimental uncertainty.
+
+This project combines conductivity, buoyancy, waterproofing, and energy conversion into a single system 
+that had to physically work not just look correct in calculations.
 </p>
 
 <h3 class="major">Objective</h3>
 <p>
-Design a floating electromechanical device that activates when placed in ionized water,
-demonstrating principles of resistance, current flow, buoyancy, and energy conversion.
+Design and build a floating electromechanical device that activates when placed in ionized water, 
+demonstrating key engineering principles including resistance, current flow, buoyancy, and electrical-to-mechanical energy conversion.
+
+Beyond making the system function, the objective was to measure performance, identify losses, 
+and understand why real systems rarely behave like ideal models.
 </p>
 
 <h3 class="major">Mechanical & Electrical Design</h3>
 <p>
-The Turtleduck body was 3D printed and sealed to prevent water ingress.
-Special attention was given to buoyancy, weight distribution, and motor protrusion.
-Aluminum electrodes were used to avoid oxidation issues encountered with copper.
+The Turtleduck body was fully 3D printed and sealed to protect internal electronics from water exposure. 
+Special care was taken with buoyancy and weight distribution to ensure the device floated level while still allowing the motor shaft to interact with the external load.
+
+Early testing revealed severe corrosion issues when using copper electrodes, leading to unreliable electrical behavior.
+To solve this, the electrodes were redesigned using aluminum, which significantly reduced oxidation and improved consistency during testing.
 </p>
 
 <!-- IMAGE PLACEHOLDER -->
@@ -68,9 +76,11 @@ Aluminum electrodes were used to avoid oxidation issues encountered with copper.
 
 <h3 class="major">Circuit Logic & Theory</h3>
 <p>
-Salt added to the water lowers resistance, allowing current to flow and complete the circuit.
-Using Ohm’s Law (V = IR), the increase in current enables the motor to activate.
-The water effectively behaves as a conductive path rather than an insulator.
+When salt is added to water, the resistance of the water decreases, allowing current to flow between the electrodes and complete the circuit.
+Using Ohm’s Law (V = IR), this increase in current enables the motor to activate.
+
+In this system, the water itself acts as a variable conductive path rather than an insulator. 
+Small changes in salt concentration had noticeable effects on current flow and motor behavior, reinforcing the sensitivity of real electrical systems to environmental conditions.
 </p>
 
 <!-- SCHEMATIC PLACEHOLDER -->
@@ -80,9 +90,11 @@ The water effectively behaves as a conductive path rather than an insulator.
 
 <h3 class="major">Testing & Experimental Results</h3>
 <p>
-Efficiency testing was performed using a hanging mass experiment.
-Electrical energy was converted into kinetic and then potential energy.
-Measured voltage, current, mass, and time values were used to estimate system efficiency.
+To evaluate system performance, efficiency testing was conducted using a hanging mass experiment. 
+Electrical energy from the circuit was converted into mechanical motion, lifting a known mass over a measured distance.
+
+By recording voltage, current, lifted mass, and time, the system’s electrical input power and mechanical output power were estimated. 
+While the overall efficiency was low, the results clearly demonstrated where energy was being lost — primarily through friction, water resistance, and sealing constraints.
 </p>
 
 <div class="experiment-section">
@@ -90,9 +102,11 @@ Measured voltage, current, mass, and time values were used to estimate system ef
   <h3 class="major">Experimental Energy Breakdown</h3>
 
   <p>
-    The Turtleduck system converts electrical energy into mechanical motion
-    through a conductive water path. Measurements were taken to estimate
-    energy transfer efficiency across electrical, kinetic, and potential stages.
+    The Turtleduck system converts electrical energy into mechanical motion through a conductive water path. 
+	Measurements were taken at each stage to estimate how efficiently energy moved through the system, from electrical input to mechanical output.
+
+Rather than focusing on ideal efficiency, this experiment emphasized understanding losses
+and limitations, which are unavoidable in real-world engineering designs..
   </p>
 
   <table class="experiment-table">
@@ -143,24 +157,27 @@ Measured voltage, current, mass, and time values were used to estimate system ef
 <h3 class="major">Engineering Challenges</h3>
 
 <ul>
-  <li>Water sealing significantly increased mechanical complexity</li>
-  <li>Friction and sealing reduced overall efficiency</li>
-  <li>Accurate experimental measurements were difficult to repeat consistently</li>
-  <li>Simple designs can hide complex interdisciplinary challenges</li>
+  <li>Achieving reliable waterproofing significantly increased mechanical complexity/li>
+  <li>Friction and sealing methods reduced mechanical efficiency</li>
+  <li>Electrical measurements varied due to changing water conductivity </li>
+	<li>Repeating experiments consistently proved difficult </li>
+  <li>A simple-looking system revealed strong interdisciplinary dependencies</li>
 </ul>
 
 <h3 class="major">Lessons Learned</h3>
 <p>
-This project reinforced the importance of interdisciplinary thinking.
-Electrical theory, mechanical constraints, and experimental uncertainty
-must be addressed simultaneously to achieve reliable real-world behavior.
+This project reinforced that engineering problems rarely belong to a single discipline. 
+	Electrical theory, mechanical constraints, materials science, and experimental uncertainty all interacted in ways that could not be ignored.
+
+It was a strong reminder that real systems expose weaknesses in assumptions, and that 
+troubleshooting often matters more than initial calculations.
 </p>
 
 
 <h3 class="major">Future Improvements</h3>
 <p>
-Future iterations would include a replaceable battery system,
-alternative sealing methods, and improved experimental measurement techniques.
+Future iterations of the Turtleduck would include a modular battery system, improved sealing techniques, and more precise experimental measurement methods. 
+Refining the mechanical transmission and reducing friction would also improve efficiency and repeatability.
 </p>
 
 <h3 class="major">Media & Documentation</h3>
@@ -188,4 +205,5 @@ alternative sealing methods, and improved experimental measurement techniques.
 
 </body>
 </html>
+
 
