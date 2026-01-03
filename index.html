@@ -26,6 +26,191 @@
   
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		 <style>
+			 /* Technology Tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tech-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Project Status Badges */
+    .project-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .status-complete {
+      background: #d1fae5;
+      color: #065f46;
+      border: 2px solid #10b981;
+    }
+    
+    .status-featured {
+      background: #fef3c7;
+      color: #92400e;
+      border: 2px solid #f59e0b;
+    }
+    
+    .status-active {
+      background: #dbeafe;
+      color: #1e3a8a;
+      border: 2px solid #3b82f6;
+    }
+    
+    /* Project Metrics */
+    .project-metrics {
+      display: flex;
+      gap: 1.5rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #5bc0de;
+    }
+    
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #999;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Enhanced Project Card */
+    .project-card-enhanced {
+      position: relative;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.02);
+      border-left: 4px solid #5bc0de;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .project-card-enhanced:hover {
+      background: rgba(255,255,255,0.05);
+      border-left-width: 6px;
+      transform: translateX(5px);
+    }
+
+			  /* Lightbox Modal for Full-Size Images */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 10000;
+      cursor: zoom-out;
+    }
+    
+    .lightbox-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10001;
+    }
+    
+    .lightbox-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      background: rgba(0,0,0,0.7);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      max-width: 80%;
+      text-align: center;
+    }
+    
+    /* Side-by-Side Comparison */
+    .comparison-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .comparison-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .comparison-item {
+      text-align: center;
+    }
+    
+    .comparison-label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: #5bc0de;
+      color: white;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+	}
+
+		 </style>
 	</head>
 	<body class="is-preload">
 
@@ -120,7 +305,41 @@
 									<img src="images/front.jpeg" alt="AFROBOT Project" />
 									</a>
 									<div class="content">
-										<h2 class="major">AFROBOT – Robotics Project</h2>
+
+										
+										<div class="project-header">
+								<h2 class="major">AFROBOT – Robotics Project</h2>
+							</div>
+							<span class="status-badge status-featured">
+								⭐ Featured Project
+								</span>
+							
+							<!-- Technology Tags -->
+							<div class="tech-tags">
+								<span class="tech-tag">Arduino</span>
+								<span class="tech-tag">Computer Vision</span>
+								<span class="tech-tag">drok DC buck</span>
+								<span class="tech-tag">IR Sensors</span>
+								<span class="tech-tag">Subsumption Architecture</span>
+								<span class="tech-tag">PWM Control</span>
+								<span class="tech-tag">Op-Amp Circuits</span>
+							</div>
+							
+							<!-- Project Metrics -->
+							<div class="project-metrics">
+								<div class="metric-item">
+								<span class="metric-value">4</span>
+								<span class="metric-label">Behavior Layers</span>
+								</div>
+								<div class="metric-item">
+								<span class="metric-value">11cm</span>
+								<span class="metric-label">Detection Range</span>
+								</div>
+								<div class="metric-item">
+								<span class="metric-value">1m</span>
+								<span class="metric-label">Tracking Distance</span>
+								</div>
+							</div>
 										<p>
 										  AfroBot is an autonomous mobile robot which act like a pet. This project helps me to explore how sensing, control,
 										  and behavior interact in a real system.
@@ -135,6 +354,8 @@
 										  This project helped me connect analog signal conditioning, PWM motor control,
 										  and embedded decision-making into one working robot.
 										</p>
+										<p><strong>Key Challenge:</strong> Complete system rebuild 2 days before deadline due to wiring failures. 
+											Learned that physical robustness is as critical as code logic.</p>
 
 										<a href="projects/AFROBOT.html" class="special">View Project</a>
 									</div>
@@ -147,8 +368,23 @@
 								<div class="inner">
 									<a href="projects/turtleduck.html" class="image"><img src="images/Screenshot 2025-12-21 075012.png" alt="" /></a>
 									<div class="content">
-										<h2 class="major">Ashton The Turtleduck </h2>
-										<p>
+										<!-- Project Header with Status Badge -->
+										<div class="project-header">
+								<h2 class="major">Ashton The Turtleduck 🦆</h2>
+								</div>
+								<span class="status-badge status-complete">
+									⭐ Featured Project
+									</span>
+								
+								<!-- Technology Tags -->
+								<div class="tech-tags">
+									<span class="tech-tag">3D Design</span>
+									<span class="tech-tag">Ohm's Law</span>
+									<span class="tech-tag">Circuit Design</span>
+									<span class="tech-tag">Waterproofing</span>
+									<span class="tech-tag">Material Selection</span>
+								</div>
+											<p>
 											  Ashton the Turtleduck 🦆 started as a simple idea and quickly became a real
 											  engineering challenge.
 											  My team and I designed and built a floating electromechanical system that uses
@@ -168,9 +404,11 @@
 											  This project was a strong reminder that engineering theory only matters if it
 											  survives real-world constraints.
 											</p>
+										<p><strong>Key Challenge:</strong> Theory meets reality. Efficiency losses from friction, water 
+											resistance, and sealing taught us how engineering constraints affect real-world performance.</p>
+
 
 												<a href="projects/turtleduck.html" class="special">Learn more</a>
-											
 										<ul class="actions">
 								<li><a href="projects.html" class="button">View more Projects</a></li>
 									</div>
@@ -277,6 +515,7 @@
 	</body>
 
 </html>
+
 
 
 
