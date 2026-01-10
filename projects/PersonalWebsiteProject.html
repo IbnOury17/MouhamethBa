@@ -1,38 +1,411 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html>
 <head>
-  <title>Engineering Portfolio Website | Mouhameth Ba</title>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="../assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-
+  
+  <title>Website Project | Mouhameth Ba</title>
+<meta name="description" content="From Senegal to industrial robotics in the US. My journey in mechatronics engineering, automation systems, and hands-on problem solving.">
+  
+		
+  <meta name="keywords" content="robotics engineer, mechatronics, automation, portfolio, Arduino, PLC, industrial robotics, autonomous systems, computer vision, embedded systems, AFROBOT, Mouhameth Ba, Senegal engineer">
+  <meta name="author" content="Mouhameth Ba">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:title" content="Mouhameth Ba - Robotics Engineer Portfolio">
+  <meta property="og:description" content="Engineering portfolio showcasing autonomous robotics projects, subsumption architecture, and real-world industrial automation experience.">
+  <meta property="og:image" content="https://mouhamethba/images/gradmouhametba.jpg">
+  <meta property="og:url" content="https://mouhamethba">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mouhameth Ba - Robotics Engineer">
+  <meta name="twitter:description" content="Autonomous robotics projects and engineering portfolio">
+  <meta name="twitter:image" content="https://mouhamethba/images/gradmouhametba.jpg">
+  
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  
   <style>
-    /* ===== Engineering Mode ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    .engineering-mode {
-      background: rgba(91, 192, 222, 0.08);
-      border-left: 4px solid #5bc0de;
+    body {
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    /* ========== MATRIX RAIN BACKGROUND ========== */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .matrix-column {
+      position: absolute;
+      top: -100%;
+      font-family: 'Courier New', monospace;
+      font-size: 20px;
+      color: #00ff41;
+      text-shadow: 0 0 8px #00ff41;
+      white-space: nowrap;
+      animation: matrixFall linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes matrixFall {
+      0% {
+        top: -100%;
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    /* ========== HEADER ========== */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 200, 50, 0.05) 100%);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(0, 255, 65, 0.3);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: all 0.3s ease;
+    }
+
+    #header.scrolled {
+      height: 60px;
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 255, 65, 0.3);
+    }
+
+    #header h1 a {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    #header h1 a:hover {
+      filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.8));
+    }
+
+    #header nav a {
+      color: #00ff41;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.8rem 2rem;
+      border: 2px solid rgba(0, 255, 65, 0.3);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    #header nav a:hover {
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+    }
+
+    /* ========== TOP BANNER ========== */
+    .meta-banner {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      background: linear-gradient(90deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 200, 50, 0.2) 100%);
+      border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+      padding: 1rem 2rem;
+      z-index: 9998;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .banner-text {
+      color: #00ff41;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.1rem;
+      animation: slideText 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes slideText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
       padding: 2rem;
-      border-radius: 6px;
+      max-width: 1200px;
+    }
+
+    .hero-icon {
+      font-size: 8rem;
+      margin-bottom: 2rem;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 40px rgba(0, 255, 65, 0.6));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .hero-title {
+      font-size: 5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 50%, #00ff41 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 40px rgba(0, 255, 65, 0.8));
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.8rem;
+      color: #00ff41;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-description {
+      font-size: 1.3rem;
+      color: #ccc;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1s forwards;
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    #main-content {
+      position: relative;
+      background: linear-gradient(180deg, #000 0%, #0a0a0a 50%, #000 100%);
+      z-index: 2;
+      padding-top: 60px;
+    }
+
+    .project-section {
+      padding: 8rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .project-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      position: relative;
+    }
+
+    .section-number {
+      font-size: 8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 200, 50, 0.05) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 50%, #00ff41 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+    }
+
+    /* ========== CONTENT CARDS ========== */
+    .content-card {
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.08) 0%, rgba(0, 200, 50, 0.04) 100%);
+      padding: 4rem;
+      border-radius: 30px;
+      border: 2px solid rgba(0, 255, 65, 0.3);
+      position: relative;
+      overflow: hidden;
       margin: 3rem 0;
+      transition: all 0.5s ease;
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+      animation: rotate 30s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .content-card:hover {
+      border-color: #00ff41;
+      box-shadow: 0 20px 60px rgba(0, 255, 65, 0.4);
+      transform: translateY(-10px);
+    }
+
+    .content-card p {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: #ccc;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-card strong {
+      color: #00ff41;
+    }
+
+    .content-card em {
+      color: #00cc33;
+      font-style: italic;
+    }
+
+    /* ========== ENGINEERING MODE TOGGLE ========== */
+    .engineering-mode {
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 200, 50, 0.08) 100%);
+      border: 2px solid rgba(0, 255, 65, 0.4);
+      border-radius: 25px;
+      padding: 3rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .engineering-mode::before {
+      content: '⚙️';
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 4rem;
+      opacity: 0.1;
     }
 
     .engineering-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(0, 255, 65, 0.2);
     }
 
     .engineering-toggle h3 {
+      color: #00ff41;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin: 0;
     }
 
     .toggle-switch {
       position: relative;
-      width: 52px;
-      height: 26px;
+      width: 70px;
+      height: 35px;
     }
 
     .toggle-switch input {
@@ -46,174 +419,479 @@
       cursor: pointer;
       inset: 0;
       background-color: #333;
-      border-radius: 26px;
-      transition: 0.3s;
+      border-radius: 35px;
+      transition: 0.4s;
+      border: 2px solid rgba(0, 255, 65, 0.3);
     }
 
     .slider:before {
       position: absolute;
       content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
+      height: 25px;
+      width: 25px;
+      left: 4px;
       bottom: 3px;
-      background-color: white;
+      background-color: #666;
       border-radius: 50%;
-      transition: 0.3s;
+      transition: 0.4s;
     }
 
     input:checked + .slider {
-      background-color: #5bc0de;
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
     }
 
     input:checked + .slider:before {
-      transform: translateX(26px);
+      transform: translateX(35px);
+      background-color: #000;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
     }
 
     .engineering-content {
-      display: none;
-      font-size: 0.95rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .engineering-content.active {
-      display: block;
+      max-height: 2000px;
+      opacity: 1;
+    }
+
+    .engineering-content p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
 
     .engineering-content ul {
-      margin-top: 1rem;
+      list-style: none;
+      padding: 0;
     }
 
     .engineering-content li {
-      margin-bottom: 0.5rem;
+      padding: 1rem 0 1rem 2rem;
+      position: relative;
+      color: #aaa;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
 
-    .image.fit img {
-      border-radius: 6px;
-    }
-
-    /* Top banner message with sliding text */
-    #top-banner {
-      position: fixed;
-      top: 3.5em; /* Below the header */
+    .engineering-content li::before {
+      content: '▹';
+      position: absolute;
       left: 0;
-      width: 100%;
-      background: #4c5c96; /* Matching blue */
-      color: white;
-      padding: 1rem 0;
-      z-index: 998;
+      color: #00ff41;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    /* ========== TECH STACK GRID ========== */
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .tech-card {
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 200, 50, 0.05) 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 2px solid rgba(0, 255, 65, 0.3);
+      position: relative;
       overflow: hidden;
-      white-space: nowrap;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    #top-banner p {
-      animation: slideText 30s linear infinite;
-      margin: 0;
-      text-align: start;
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+      transition: left 0.6s ease;
     }
 
-    @keyframes slideText {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+    .tech-card:hover::before {
+      left: 100%;
     }
 
-     /* Adjust wrapper to avoid overlap */
-    #wrapper {
-      padding-top: 1rem;
+    .tech-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: #00ff41;
+      box-shadow: 0 20px 60px rgba(0, 255, 65, 0.4);
     }
 
+    .tech-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.6));
+    }
+
+    .tech-title {
+      font-size: 1.5rem;
+      color: #00ff41;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tech-description {
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    /* ========== CODE BLOCK TERMINAL ========== */
+    .code-terminal {
+      background: #0a0a0a;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid rgba(0, 255, 65, 0.3);
+      margin: 3rem 0;
+      box-shadow: 0 20px 60px rgba(0, 255, 65, 0.2);
+    }
+
+    .terminal-header {
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.2) 0%, rgba(0, 200, 50, 0.1) 100%);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56;
+    }
+
+    .terminal-dot:nth-child(2) { background: #ffbd2e; }
+    .terminal-dot:nth-child(3) { background: #27c93f; }
+
+    .terminal-title {
+      margin-left: 1rem;
+      color: #00ff41;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+    }
+
+    .terminal-body {
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #00ff41;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .terminal-body::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: #00ff41;
+      border-radius: 5px;
+    }
+
+    .code-comment {
+      color: #666;
+      font-style: italic;
+    }
+
+    .code-keyword {
+      color: #ff79c6;
+      font-weight: bold;
+    }
+
+    .code-string {
+      color: #f1fa8c;
+    }
+
+    /* ========== TIMELINE ========== */
+    .dev-timeline {
+      position: relative;
+      padding: 3rem 0;
+      margin: 4rem 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 40px;
+      top: 80px;
+      bottom: -80px;
+      width: 3px;
+      background: linear-gradient(to bottom, #00ff41, #00cc33);
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-dot {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #00ff41 0%, #00cc33 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      border: 5px solid rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 25px rgba(0, 255, 65, 0.5);
+      z-index: 1;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 10px 40px rgba(0, 255, 65, 0.8);
+    }
+
+    .timeline-content {
+      flex: 1;
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.08) 0%, rgba(0, 200, 50, 0.04) 100%);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border-left: 4px solid #00ff41;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+    }
+
+    .timeline-phase {
+      color: #00ff41;
+      font-weight: 800;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .timeline-content h4 {
+      color: #00cc33;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .timeline-content p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    /* ========== FOOTER ========== */
+    #footer {
+      background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 200, 50, 0.05) 100%);
+      border-top: 2px solid rgba(0, 255, 65, 0.3);
+      padding: 4rem 2rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    #footer h2 {
+      color: #00ff41;
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    #footer .contact a {
+      color: #00ff41;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    #footer .contact a:hover {
+      color: #00cc33;
+      text-shadow: 0 0 20px rgba(0, 255, 65, 0.8);
+    }
+
+    #footer .copyright {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 255, 65, 0.3);
+      color: #888;
+    }
+
+    /* ========== IMAGE STYLING ========== */
+    .image-showcase {
+      margin: 4rem 0;
+      border-radius: 25px;
+      overflow: hidden;
+      border: 3px solid #00ff41;
+      box-shadow: 0 0 60px rgba(0, 255, 65, 0.4);
+    }
+
+    .image-showcase img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      #header { padding: 0 1.5rem; }
+      .hero-title { font-size: 3rem; }
+      .hero-icon { font-size: 4rem; }
+      .section-title { font-size: 2.5rem; }
+      .tech-stack { grid-template-columns: 1fr; }
+      .project-section { padding: 4rem 1.5rem; }
+      .timeline-item { flex-direction: column; gap: 1.5rem; }
+      .timeline-dot { width: 60px; height: 60px; font-size: 2rem; }
+    }
   </style>
 </head>
 
 <body class="is-preload">
-<div id="page-wrapper">
 
-  <!-- Header -->
-  <header id="header">
-    <h1><a href="../projects.html">Projects</a></h1>
-    <nav><a href="#menu">Menu</a></nav>
-  </header>
+  <!-- Matrix Background -->
+  <div class="matrix-bg" id="matrix"></div>
 
-  <!-- Menu -->
-  <nav id="menu">
-    <div class="inner">
-      <h2>Menu</h2>
-      <ul class="links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../bio.html">Bio</a></li>
-        <li><a href="../projects.html">Projects</a></li>
-        <li><a href="../experience.html">Experience</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-      <a href="#" class="close">Close</a>
-    </div>
-  </nav>
+  <div id="page-wrapper">
 
-  <div id="top-banner">
-              <div id="top-banner">
-              <p><strong>This website is itself an engineered system designed to communicate engineering work.</strong></p>
-            </div>
-            </div>
-
-  <!-- Main -->
-  <section id="wrapper">
-    <header>
-      <div class="inner">
-        <h2>Engineering Portfolio Website</h2>
-        <p>A system designed to communicate engineering work clearly and truthfully</p>
-      </div>
+    <!-- Header -->
+    <header id="header">
+      <h1><a href="../projects.html">Projects</a></h1>
+      <nav><a href="#menu">Menu</a></nav>
     </header>
 
-    <div class="wrapper">
+    <!-- Menu -->
+    <nav id="menu">
       <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../bio.html">Bio</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../experience.html">Experience</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="close">Close</a>
+      </div>
+    </nav>
 
-        <!-- Overview -->
-        <h3 class="major">Project Overview</h3>
-            <p>
-              This portfolio website was designed as an engineering project, not a simple
-              personal website. Instead of focusing on visual trends or buzzwords, the goal
-              was to build a system that communicates real engineering work clearly,
-              honestly, and efficiently.
-            </p>
-            
-            <p>
-              Every section is structured to explain not just <em>what</em> was built,
-              but <em>why</em> it was built that way, what constraints existed, and what
-              was learned in the process.
-            </p>
+    <!-- Meta Banner -->
+    <div class="meta-banner" id="metaBanner">
+      <div class="banner-text">
+        <strong>🎯 META PROJECT:</strong> This website is itself an engineered system designed to communicate engineering work
+      </div>
+    </div>
 
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-icon">💻</div>
+        <h1 class="hero-title">Portfolio Website</h1>
+        <p class="hero-subtitle">A Meta Engineering Project</p>
+        <p class="hero-description">
+          Treating communication as an engineering problem—this site is designed, structured, 
+          and optimized to convey technical work with clarity, honesty, and purpose
+        </p>
+      </div>
+    </section>
 
-        <div class="image fit">
-          <img src="../images/portfolio-system.png" alt="Portfolio Website Browser Mockup" />
+    <!-- Main Content -->
+    <div id="main-content">
+
+      <!-- Overview -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">The Meta Challenge</h2>
+          <p class="section-subtitle">Engineering Communication Itself</p>
         </div>
 
-        <h3 class="major">Design Origin & Intent</h3>
-            <p>
-              This website did not start with code. It started as a long design problem.
-              For nearly six months, the structure, layout, and purpose of the site were
-              refined mentally before a single line of HTML was written.
-            </p>
-            
-            <p>
-              The guiding question was simple but demanding:
-              <em>How do you present engineering work in a way that is honest, readable,
-              and respectful of the reviewer’s time?</em>
-            </p>
-            
-            <p>
-              Every section, interaction, and visual decision exists to support that goal —
-              not aesthetics for their own sake.
-            </p>
+        <div class="content-card">
+          <p>
+            This portfolio website was designed as an <strong>engineering project</strong>, not a simple personal website. 
+            Instead of focusing on visual trends or buzzwords, the goal was to build a system that communicates 
+            real engineering work <strong>clearly, honestly, and efficiently</strong>.
+          </p>
+          <p>
+            Every section is structured to explain not just <em>what</em> was built, but <em>why</em> it was built that way, 
+            what constraints existed, and what was learned in the process. Strong engineering work can lose its value 
+            if it is poorly communicated—this project treats communication itself as an engineering problem.
+          </p>
+          <p>
+            By applying structure, constraints, and iteration to how projects are presented, 
+            the website becomes an <strong>extension of the engineering work</strong> rather than just a container for it.
+          </p>
+        </div>
+      </section>
 
+      <!-- Design Origin -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Design Origin & Intent</h2>
+          <p class="section-subtitle">Six Months Before a Single Line of Code</p>
+        </div>
 
-        <!-- Engineering Mode -->
+        <div class="content-card">
+          <p>
+            This website did not start with code. It started as a long design problem. 
+            For nearly <strong>six months</strong>, the structure, layout, and purpose of the site were 
+            refined mentally before a single line of HTML was written.
+          </p>
+          <p>
+            The guiding question was simple but demanding: <em>How do you present engineering work in a way 
+            that is honest, readable, and respectful of the reviewer's time?</em>
+          </p>
+          <p>
+            Every section, interaction, and visual decision exists to support that goal—not aesthetics for their own sake. 
+            This wasn't about making something that looked good. It was about making something that <strong>worked</strong>.
+          </p>
+        </div>
+
+        <div class="image-showcase">
+          <img src="../images/portfolio-system.png" alt="Portfolio Website System Architecture" />
+        </div>
+      </section>
+
+      <!-- Engineering Mode -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Engineering Mode</h2>
+          <p class="section-subtitle">System-Level Analysis</p>
+        </div>
+
         <div class="engineering-mode">
-
           <div class="engineering-toggle">
-            <h3 class="major">Engineering Mode</h3>
+            <h3>Toggle Engineering View</h3>
             <label class="toggle-switch">
               <input type="checkbox" id="engToggle">
               <span class="slider"></span>
@@ -222,249 +900,449 @@
 
           <div id="engineeringContent" class="engineering-content">
             <p>
-              When viewed through an engineering lens, the portfolio functions as a
-              structured information system optimized for fast comprehension and
-              accurate evaluation.
+              When viewed through an engineering lens, the portfolio functions as a 
+              <strong>structured information system</strong> optimized for fast comprehension and accurate evaluation.
             </p>
 
             <ul>
-              <li><strong>System Objective:</strong> Communicate real engineering capability without exaggeration</li>
-              <li><strong>Inputs:</strong> Recruiters, engineers, project reviewers</li>
-              <li><strong>Outputs:</strong> Clear understanding of skills, decisions, and constraints</li>
-              <li><strong>Constraints:</strong> Attention span, technical skepticism, time pressure</li>
-              <li><strong>Design Strategy:</strong> Minimalism, hierarchy, behavior-first explanations</li>
+              <li><strong>System Objective:</strong> Communicate real engineering capability without exaggeration or marketing fluff</li>
+              <li><strong>Inputs:</strong> Recruiters, engineers, project reviewers with limited time and high skepticism</li>
+              <li><strong>Outputs:</strong> Clear understanding of skills, decisions, constraints, and problem-solving approaches</li>
+              <li><strong>Constraints:</strong> Limited attention span (~2 minutes), technical skepticism, time pressure, visual noise intolerance</li>
+              <li><strong>Design Strategy:</strong> Information hierarchy, behavior-first explanations, progressive detail revelation, minimalist aesthetics</li>
+              <li><strong>Success Metric:</strong> Reviewer can accurately assess technical depth within 90 seconds per project</li>
             </ul>
-          </div>
 
+            <p style="margin-top: 2rem; color: #00ff41; font-weight: 600;">
+              This optional layer allows engineers to analyze the website as a system, 
+              while keeping the default experience simple and accessible to non-technical reviewers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Architecture -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">System Architecture</h2>
+          <p class="section-subtitle">Modular Information Design</p>
         </div>
 
-        <!-- Design Philosophy -->
-       <h3 class="major">Design Philosophy</h3>
-                <p>
-                  Many portfolios try to impress through visuals or marketing language.
-                  This one takes a different approach.
-                </p>
-                
-                <p>
-                  The design prioritizes clarity over decoration, structure over flash,
-                  and explanation over exaggeration. Each project is treated as a system,
-                  and each system is explained through behavior, decisions, and trade-offs.
-                </p>
-                
-                <p>
-                  If something worked, it is shown. If something failed or required iteration,
-                  it is explained. That honesty is intentional.
-                </p>
-
-        <h3 class="major">System Architecture</h3>
-            <p>
-              The portfolio is structured as a modular information system.
-              Each page serves a defined function and communicates a specific layer
-              of technical depth.
+        <div class="tech-stack">
+          <div class="tech-card">
+            <span class="tech-icon">🏠</span>
+            <h3 class="tech-title">Home</h3>
+            <p class="tech-description">
+              High-level signal and identity. First impression optimization. 
+              Quick navigation to core content areas.
             </p>
-            
-            <ul>
-              <li><strong>Home:</strong> High-level signal and identity</li>
-              <li><strong>Projects:</strong> Engineering decisions, behavior, and results</li>
-              <li><strong>Bio:</strong> Context and technical trajectory</li>
-              <li><strong>Experience:</strong> Real-world exposure and constraints</li>
-            </ul>
-            
-            <p>
-              This separation prevents information overload while allowing deeper exploration
-              when needed.
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🤖</span>
+            <h3 class="tech-title">Projects</h3>
+            <p class="tech-description">
+              Engineering decisions, behavior architectures, and measurable results. 
+              Technical depth without jargon overload.
             </p>
+          </div>
 
+          <div class="tech-card">
+            <span class="tech-icon">👤</span>
+            <h3 class="tech-title">Bio</h3>
+            <p class="tech-description">
+              Context and technical trajectory. Personal story that explains 
+              engineering mindset and growth path.
+            </p>
+          </div>
 
-        <!-- Key Features -->
-      <h3 class="major">Key Features</h3>
-          <ul>
-            <li>Project pages written like simplified engineering reports</li>
-            <li>Clear behavior-based explanations instead of vague summaries</li>
-            <li>Consistent layout to reduce cognitive load while reading</li>
-            <li>Optional technical depth for engineers who want more detail</li>
+          <div class="tech-card">
+            <span class="tech-icon">💼</span>
+            <h3 class="tech-title">Experience</h3>
+            <p class="tech-description">
+              Real-world exposure, industrial constraints, and practical problem-solving. 
+              Bridge between theory and application.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-card" style="margin-top: 4rem;">
+          <p>
+            This modular separation prevents <strong>information overload</strong> while allowing deeper exploration when needed. 
+            Each page serves a defined function and communicates a specific layer of technical depth. 
+            The structure is designed to scale—as technical work grows in complexity, new content can be added 
+            without redesigning the entire system.
+          </p>
+        </div>
+      </section>
+
+      <!-- Development Timeline -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Development Process</h2>
+          <p class="section-subtitle">From Concept to Deployment</p>
+        </div>
+
+        <div class="dev-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">💭</div>
+            <div class="timeline-content">
+              <div class="timeline-phase">Phase 1</div>
+              <h4>Conceptual Design (6 Months)</h4>
+              <p>
+                For nearly six months, the structure and intent were developed mentally before any coding began. 
+                Questions like "What does a recruiter need to understand first?" and "How much technical depth is too much?" 
+                were continuously refined. This phase focused on information flow and reader experience, 
+                not colors or animations.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">📐</div>
+            <div class="timeline-content">
+              <div class="timeline-phase">Phase 2</div>
+              <h4>Structural Planning</h4>
+              <p>
+                Before implementation, the site was broken down into functional pages, each serving a specific role. 
+                Landing pages provide high-level signal, project pages handle detailed explanations, 
+                and navigation remains minimal to avoid distraction. This modular structure allows the website 
+                to scale without becoming cluttered.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">⚙️</div>
+            <div class="timeline-content">
+              <div class="timeline-phase">Phase 3</div>
+              <h4>Technology Selection</h4>
+              <p>
+                The website was intentionally built using lightweight and transparent tools to maintain full control 
+                over structure and behavior. HTML5 provides semantic structure, CSS handles layout and visual hierarchy, 
+                minimal JavaScript adds interaction, and GitHub Pages enables deployment with version control. 
+                Avoiding heavy frameworks ensured design decisions remained intentional.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">🔨</div>
+            <div class="timeline-content">
+              <div class="timeline-phase">Phase 4</div>
+              <h4>Implementation & Iteration</h4>
+              <p>
+                Development followed an iterative approach—build a section, test comprehension, refine structure, repeat. 
+                Early versions were too technical. Later versions were too vague. The final design balances clarity 
+                with depth, allowing readers to engage at their preferred level of detail.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot">🚀</div>
+            <div class="timeline-content">
+              <div class="timeline-phase">Phase 5</div>
+              <h4>Deployment & Evolution</h4>
+              <p>
+                The site launched with core content in place, but it's designed to evolve. As projects increase in complexity, 
+                the structure allows for deeper documentation without redesigning the system. Future additions include 
+                more interactive diagrams, expanded technical deep dives, and potentially integrated demos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">Technology Stack</h2>
+          <p class="section-subtitle">Tools & Implementation</p>
+        </div>
+
+        <div class="code-terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot"></div>
+            <div class="terminal-dot"></div>
+            <div class="terminal-dot"></div>
+            <span class="terminal-title">tech_stack.config</span>
+          </div>
+          <div class="terminal-body">
+            <pre><code><span class="code-comment">// Core Technologies</span>
+<span class="code-keyword">const</span> techStack = {
+  <span class="code-string">"structure"</span>: <span class="code-string">"HTML5"</span>,        <span class="code-comment">// Semantic markup</span>
+  <span class="code-string">"styling"</span>: <span class="code-string">"CSS3"</span>,          <span class="code-comment">// Visual hierarchy</span>
+  <span class="code-string">"interaction"</span>: <span class="code-string">"JavaScript"</span>, <span class="code-comment">// Minimal, purposeful</span>
+  <span class="code-string">"hosting"</span>: <span class="code-string">"GitHub Pages"</span>,  <span class="code-comment">// Version control + deployment</span>
+  <span class="code-string">"philosophy"</span>: <span class="code-string">"Simplicity"</span>   <span class="code-comment">// No frameworks, full control</span>
+};
+
+<span class="code-comment">// Design Principles</span>
+<span class="code-keyword">const</span> principles = [
+  <span class="code-string">"Clarity over complexity"</span>,
+  <span class="code-string">"Structure over flash"</span>,
+  <span class="code-string">"Explanation over exaggeration"</span>,
+  <span class="code-string">"Honesty in all representations"</span>
+];
+
+<span class="code-comment">// Why these choices?</span>
+<span class="code-comment">// Lightweight = fast loading</span>
+<span class="code-comment">// No frameworks = intentional decisions</span>
+<span class="code-comment">// Version control = iterative refinement</span>
+<span class="code-comment">// Transparency = reviewable by anyone</span></code></pre>
+          </div>
+        </div>
+
+        <div class="tech-stack" style="margin-top: 4rem;">
+          <div class="tech-card">
+            <span class="tech-icon">📝</span>
+            <h3 class="tech-title">HTML5</h3>
+            <p class="tech-description">
+              Semantic structure ensures content is accessible, indexable, and maintainable. 
+              Clean markup means the site can evolve without technical debt.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🎨</span>
+            <h3 class="tech-title">CSS3</h3>
+            <p class="tech-description">
+              Custom styling creates visual hierarchy without distracting from content. 
+              Responsive design ensures readability on all devices.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">⚡</span>
+            <h3 class="tech-title">JavaScript</h3>
+            <p class="tech-description">
+              Minimal, purposeful interactions enhance usability without adding complexity. 
+              No dependencies, no bloat—just functional behavior.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🔄</span>
+            <h3 class="tech-title">Git & GitHub</h3>
+            <p class="tech-description">
+              Version control tracks every iteration and decision. GitHub Pages provides 
+              free, reliable hosting with built-in deployment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Design Philosophy -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Design Philosophy</h2>
+          <p class="section-subtitle">Principles Over Trends</p>
+        </div>
+
+        <div class="content-card">
+          <p>
+            Many portfolios try to impress through visuals or marketing language. This one takes a different approach. 
+            The design prioritizes <strong>clarity over decoration</strong>, <strong>structure over flash</strong>, 
+            and <strong>explanation over exaggeration</strong>.
+          </p>
+          <p>
+            Each project is treated as a system, and each system is explained through behavior, decisions, and trade-offs. 
+            If something worked, it is shown. If something failed or required iteration, it is explained. 
+            <strong>That honesty is intentional</strong>.
+          </p>
+          <p>
+            The same principles used in my robotics projects—modularity, constraints, behavior-first design, 
+            and iterative refinement—are applied here at a higher level. Engineering communication is itself 
+            an engineering challenge.
+          </p>
+        </div>
+      </section>
+
+      <!-- Constraints & Tradeoffs -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">08</span>
+          <h2 class="section-title">Real Constraints</h2>
+          <p class="section-subtitle">Designed Under Pressure</p>
+        </div>
+
+        <div class="tech-stack">
+          <div class="tech-card">
+            <span class="tech-icon">⏱️</span>
+            <h3 class="tech-title">Time Constraint</h3>
+            <p class="tech-description">
+              Recruiters may spend less than 2 minutes on a portfolio. 
+              Every element must justify its existence—no decoration for decoration's sake.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🔍</span>
+            <h3 class="tech-title">Skepticism</h3>
+            <p class="tech-description">
+              Engineers are skeptical of vague claims and marketing language. 
+              Specific behaviors, measurements, and trade-offs build credibility.
+            </p>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🎯</span>
+            <h3 class="tech-title">Clarity</h3>
+            <p class="tech-description">
+              Visual noise reduces technical credibility. Clean design signals 
+              clear thinking—which is what engineering is really about.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-card" style="margin-top: 4rem;">
+          <p>
+            The design intentionally sacrifices animation-heavy visuals and marketing language 
+            in favor of <strong>clarity, structure, and traceable logic</strong>. These constraints aren't limitations—they're 
+            design decisions that reflect how real engineering systems are built: with purpose, under pressure, 
+            optimizing for what actually matters.
+          </p>
+        </div>
+      </section>
+
+      <!-- Future Evolution -->
+      <section class="project-section">
+        <div class="section-header">
+          <span class="section-number">09</span>
+          <h2 class="section-title">Future Evolution</h2>
+          <p class="section-subtitle">Designed to Scale</p>
+        </div>
+
+        <div class="content-card">
+          <p>
+            This website is designed to evolve alongside future engineering work. As projects increase in complexity, 
+            the structure allows for deeper documentation without redesigning the system. Planned additions include:
+          </p>
+          <ul style="list-style: none; padding: 2rem 0 0 0;">
+            <li style="padding: 1rem 0 1rem 2rem; position: relative; color: #aaa; font-size: 1.1rem;">
+              <span style="position: absolute; left: 0; color: #00ff41; font-weight: bold; font-size: 1.5rem;">▹</span>
+              Additional technical deep dives for complex systems
+            </li>
+            <li style="padding: 1rem 0 1rem 2rem; position: relative; color: #aaa; font-size: 1.1rem;">
+              <span style="position: absolute; left: 0; color: #00ff41; font-weight: bold; font-size: 1.5rem;">▹</span>
+              More interactive system diagrams and visualizations
+            </li>
+            <li style="padding: 1rem 0 1rem 2rem; position: relative; color: #aaa; font-size: 1.1rem;">
+              <span style="position: absolute; left: 0; color: #00ff41; font-weight: bold; font-size: 1.5rem;">▹</span>
+              Expanded project documentation as work progresses
+            </li>
+            <li style="padding: 1rem 0 1rem 2rem; position: relative; color: #aaa; font-size: 1.1rem;">
+              <span style="position: absolute; left: 0; color: #00ff41; font-weight: bold; font-size: 1.5rem;">▹</span>
+              Potentially integrated demos and live system interactions
+            </li>
           </ul>
-
-
-        <!-- Why It Matters -->
-          <h3 class="major">Why This Project Matters</h3>
-              <p>
-                Strong engineering work can lose its value if it is poorly communicated.
-                This project treats communication itself as an engineering problem.
-              </p>
-              
-              <p>
-                By applying structure, constraints, and iteration to how projects are presented,
-                the website becomes an extension of the engineering work rather than just a container for it.
-              </p>
-     
-
-
-     <h3 class="major">Engineering Constraints & Trade-offs</h3>
-          <p>
-            Like any engineered system, this website was designed under real constraints.
+          <p style="margin-top: 2rem; color: #00ff41; font-weight: 600; font-size: 1.2rem;">
+            The platform adapts to complexity rather than fighting it—just like good engineering should.
           </p>
-          
-          <ul>
-            <li>Recruiters may spend less than two minutes on a portfolio</li>
-            <li>Engineers are skeptical of vague claims</li>
-            <li>Visual noise reduces technical credibility</li>
-          </ul>
-          
-          <p>
-            The design intentionally sacrifices animation-heavy visuals and
-            marketing language in favor of clarity, structure, and traceable logic.
-          </p>
+        </div>
+      </section>
 
-
-  <h3 class="major">Engineering Growth Path</h3>
-          <p>
-            This website represents a shift in how I approach engineering work.
-            Earlier projects focused on building systems that function.
-            This project focuses on building systems that communicate.
-          </p>
-          
-          <p>
-            The same principles used in my robotics projects — modularity,
-            constraints, behavior-first design, and iterative refinement —
-            are applied here at a higher level.
-          </p>
-          
-          <p>
-            As my technical work grows in complexity, this platform is designed
-            to evolve alongside it without losing clarity or honesty.
-          </p>
-
-
-  <h3 class="major">Engineering & Build Process</h3>
-      <p>
-        The development of this website followed an engineering-style workflow rather
-        than a traditional web design approach. The process evolved through multiple
-        stages, from conceptual sketching to final implementation.
-      </p>
-      
-      
-        <h4>Conceptual Design</h4>
-      <p>
-        For nearly six months, the structure and intent of the website were developed
-        mentally before any coding began. During this phase, the focus was not on colors
-        or animations, but on information flow and reader experience.
-      </p>
-      
-      <p>
-        Questions considered during this phase included:
-      </p>
-      <ul>
-        <li>What does a recruiter need to understand first?</li>
-        <li>How much technical depth is too much?</li>
-        <li>How can complexity be revealed gradually?</li>
-      </ul>
-  
-        <h4>Structural Planning</h4>
-          <p>
-            Before implementation, the site was broken down into functional pages,
-            each serving a specific role within the overall system.
-          </p>
-          
-          <ul>
-            <li>Landing pages provide high-level signal</li>
-            <li>Project pages handle detailed explanations</li>
-            <li>Navigation remains minimal to avoid distraction</li>
-          </ul>
-          
-          <p>
-            This modular structure allows the website to scale without becoming cluttered.
-          </p>
-
-
-          <h4>Technology Stack</h4>
-              <p>
-                The website was intentionally built using lightweight and transparent tools
-                to maintain full control over structure and behavior.
-              </p>
-              
-              <ul>
-                <li>HTML5 for semantic structure</li>
-                <li>CSS for layout and visual hierarchy</li>
-                <li>Minimal JavaScript for interaction and behavior</li>
-                <li>GitHub Pages for deployment and version control</li>
-              </ul>
-              
-              <p>
-                Avoiding heavy frameworks ensured that design decisions remained intentional
-                rather than dictated by tools.
-              </p>
-
-            <h4>Engineering Mode</h4>
-                    <p>
-                      Engineering Mode was introduced to serve technically inclined reviewers
-                      without overwhelming general readers.
-                    </p>
-                    
-                    <p>
-                      This optional layer allows engineers to analyze the website as a system,
-                      while keeping the default experience simple and accessible.
-                    </p>
-
-  
-                    <h4>Planned Evolution</h4>
-                      <p>
-                        This website is designed to evolve alongside future engineering work.
-                        As projects increase in complexity, the structure allows for deeper
-                        documentation without redesigning the system.
-                      </p>
-                      
-                      <ul>
-                        <li>Additional technical deep dives</li>
-                        <li>More interactive system diagrams</li>
-                        <li>Expanded project documentation</li>
-                      </ul>
-
-         </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <section id="footer">
-    <div class="inner">
-      <ul class="copyright">
-        <li>&copy; Mouhameth Ba. All rights reserved.</li>
-        <li>Dina metti, waaye dinagnu am ndam</li>
-      </ul>
-    </div>
-  </section>
+    <!-- Footer -->
+    <section id="footer">
+      <div class="inner">
+        <h2 class="major">Get in touch</h2>
+        <ul class="contact">
+          <li class="icon solid fa-envelope">
+            <a href="mailto:ibnoury17@gmail.com">ibnoury17@gmail.com</a>
+          </li>
+          <li class="icon brands fa-linkedin">
+            <a href="https://www.linkedin.com/in/mouhameth-ba-588b82207/" target="_blank">LinkedIn</a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Mouhameth Ba. All rights reserved.</li>
+          <li>Dina metti, waaye dinagnu am ndam</li>
+        </ul>
+      </div>
+    </section>
 
-</div>
+  </div>
 
-<!-- Scripts -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/browser.min.js"></script>
-<script src="../assets/js/breakpoints.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/main.js"></script>
+  <!-- Scripts -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
 
-<script>
-  const toggle = document.getElementById("engToggle");
-  const content = document.getElementById("engineeringContent");
-
-  toggle.addEventListener("change", () => {
-    content.classList.toggle("active");
-  });
-
-  // Hide banner on scroll
-  window.addEventListener('scroll', function() {
-    const banner = document.getElementById('top-banner');
-    if (window.scrollY > 500) { // Hide after scrolling 200px
-      banner.style.display = 'none';
-    } else {
-      banner.style.display = 'block';
+  <script>
+    // Matrix Rain Effect
+    function createMatrixRain() {
+      const matrix = document.getElementById('matrix');
+      const columns = Math.floor(window.innerWidth / 20);
+      
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i * 20) + 'px';
+        column.style.animationDuration = (5 + Math.random() * 10) + 's';
+        column.style.animationDelay = Math.random() * 5 + 's';
+        
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        let text = '';
+        for (let j = 0; j < 30; j++) {
+          text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+        }
+        column.innerHTML = text;
+        matrix.appendChild(column);
+      }
     }
-  });
 
+    // Engineering Mode Toggle
+    const toggle = document.getElementById('engToggle');
+    const content = document.getElementById('engineeringContent');
 
-</script>
+    toggle.addEventListener('change', () => {
+      content.classList.toggle('active');
+    });
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      const banner = document.getElementById('metaBanner');
+      
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+        if (window.scrollY > 500) {
+          banner.style.display = 'none';
+        }
+      } else {
+        header.classList.remove('scrolled');
+        banner.style.display = 'block';
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      createMatrixRain();
+    });
+  </script>
 
 </body>
 </html>
-
-
