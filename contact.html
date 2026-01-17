@@ -27,178 +27,608 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		
-	<head>
-	<style>
-    
-    .contact-hero {
-      text-align: center;
-      padding: 2rem 0 3rem 0;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      border-radius: 12px;
-      margin-bottom: 3rem;
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    .contact-hero h2 {
-      margin-bottom: 1rem;
+
+    body {
+      background: #000;
+      overflow-x: hidden;
     }
-    
-    .contact-hero p {
-      font-size: 1.1rem;
-      color: #999;
-      max-width: 600px;
-      margin: 0 auto;
+
+    /* ========== ANIMATED BACKGROUND ========== */
+    .contact-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(91, 192, 222, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(46, 204, 113, 0.05) 0%, transparent 50%);
+      animation: bgMove 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
     }
-    
-    /* Looking For Section */
-    .looking-for-section {
-      background: rgba(91, 192, 222, 0.08);
-      border-left: 4px solid #5bc0de;
-      padding: 2rem;
-      border-radius: 8px;
-      margin: 2rem 0;
+
+    @keyframes bgMove {
+      0%, 100% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(20px, -20px); }
     }
-    
-    .looking-for-section h3 {
-      color: #5bc0de;
-      margin-bottom: 1rem;
+
+    /* ========== PULSE RINGS ========== */
+    .pulse-rings {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid rgba(91, 192, 222, 0.2);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
+    .ring:nth-child(2) { width: 500px; height: 500px; animation-delay: 1s; }
+    .ring:nth-child(3) { width: 700px; height: 700px; animation-delay: 2s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+    }
+
+    /* ========== HEADER ========== */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(91, 192, 222, 0.1) 0%, rgba(46, 204, 113, 0.05) 100%);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(91, 192, 222, 0.3);
+      z-index: 9999;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: all 0.3s ease;
     }
-    
+
+    #header.scrolled {
+      height: 60px;
+      background: rgba(0, 0, 0, 0.95);
+      box-shadow: 0 10px 40px rgba(91, 192, 222, 0.3);
+    }
+
+    #header h1 a {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    #header nav a {
+      color: #5bc0de;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.8rem 2rem;
+      border: 2px solid rgba(91, 192, 222, 0.3);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    #header nav a:hover {
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 5px 20px rgba(91, 192, 222, 0.5);
+    }
+
+    /* ========== HERO SECTION ========== */
+    .contact-hero {
+      padding: 12rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-icon {
+      font-size: 6rem;
+      margin-bottom: 2rem;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(91, 192, 222, 0.6));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 50%, #5bc0de 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .hero-description {
+      font-size: 1.3rem;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ========== AVAILABILITY STATUS ========== */
+    .availability-banner {
+      max-width: 600px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+      border: 2px solid #10b981;
+      border-radius: 25px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .availability-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #10b981;
+      position: relative;
+      z-index: 1;
+    }
+
+    .status-dot {
+      width: 15px;
+      height: 15px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #10b981;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .availability-text {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== OPPORTUNITIES GRID ========== */
+    .opportunities-section {
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 1.1rem;
+      margin-bottom: 4rem;
+    }
+
     .opportunities-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
     }
-    
+
     .opportunity-card {
-      background: rgba(255,255,255,0.03);
-      padding: 1.5rem;
-      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(91, 192, 222, 0.08) 0%, rgba(46, 204, 113, 0.04) 100%);
+      padding: 3rem;
+      border-radius: 25px;
       border: 2px solid rgba(91, 192, 222, 0.3);
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
     }
-    
+
+    .opportunity-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(91, 192, 222, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .opportunity-card:hover::before {
+      left: 100%;
+    }
+
     .opportunity-card:hover {
+      transform: translateY(-15px);
       border-color: #5bc0de;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(91, 192, 222, 0.2);
+      box-shadow: 0 20px 60px rgba(91, 192, 222, 0.4);
     }
-    
-    .opportunity-card .icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+
+    .opportunity-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
       display: block;
+      filter: drop-shadow(0 0 15px rgba(91, 192, 222, 0.6));
     }
-    
-    .opportunity-card h4 {
+
+    .opportunity-card h3 {
       color: #5bc0de;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
     }
-    
+
     .opportunity-card p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 0;
+      color: #aaa;
+      line-height: 1.8;
+      font-size: 1.05rem;
     }
-    
-    /* Best Way to Reach */
+
+    /* ========== CONTACT METHODS ========== */
     .contact-methods {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .methods-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
     }
-    
+
     .contact-method {
+      background: linear-gradient(135deg, rgba(91, 192, 222, 0.1) 0%, rgba(46, 204, 113, 0.05) 100%);
+      padding: 3.5rem;
+      border-radius: 30px;
       text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      border-radius: 12px;
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
+      border: 2px solid rgba(91, 192, 222, 0.3);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
     }
-    
+
+    .contact-method::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(91, 192, 222, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
     .contact-method:hover {
-      border-color: #5bc0de;
       transform: scale(1.05);
+      border-color: #5bc0de;
+      box-shadow: 0 25px 60px rgba(91, 192, 222, 0.4);
     }
-    
-    .contact-method .icon-circle {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    .method-icon-circle {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem auto;
-      font-size: 2rem;
+      margin: 0 auto 2rem;
+      font-size: 3rem;
+      box-shadow: 0 10px 30px rgba(91, 192, 222, 0.5);
+      position: relative;
+      z-index: 1;
     }
-    
+
     .contact-method h3 {
-      margin-bottom: 0.8rem;
-      font-size: 1.3rem;
+      color: #5bc0de;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
     }
-    
+
     .contact-method p {
-      color: #999;
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
+      color: #aaa;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
     }
-    
-    .contact-method .button {
-      margin: 0;
-    }
-    
-    /* Response Time Badge */
-    .response-badge {
+
+    .contact-button {
       display: inline-block;
-      background: #10b981;
-      color: white;
-      padding: 0.5rem 1rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
+      color: #000;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(91, 192, 222, 0.6);
+    }
+
+    .response-time {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.5rem;
+      background: rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
       border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 1rem;
+      color: #10b981;
+      font-weight: 700;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
     }
-    
-    /* Availability Status */
-    .availability-status {
+
+    /* ========== CONTACT FORM ========== */
+    .contact-form-section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-container {
+      background: linear-gradient(135deg, rgba(91, 192, 222, 0.08) 0%, rgba(46, 204, 113, 0.04) 100%);
+      padding: 4rem;
+      border-radius: 30px;
+      border: 2px solid rgba(91, 192, 222, 0.3);
+    }
+
+    .form-container h3 {
+      color: #5bc0de;
+      font-size: 2rem;
       text-align: center;
-      padding: 1.5rem;
-      background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: 2px solid #ffffff;
-      border-radius: 8px;
-      margin: 2rem 0;
+      margin-bottom: 1rem;
+      font-weight: 800;
     }
-    
-    .availability-status .status-dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: #10b981;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-      animation: pulse 2s ease-in-out infinite;
+
+    .form-description {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
     }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+
+    .field {
+      margin-bottom: 2rem;
     }
-    
-    .availability-status strong {
-      color:  #ffffff;;
+
+    .field label {
+      color: #5bc0de;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(91, 192, 222, 0.3);
+      border-radius: 15px;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: #5bc0de;
+      box-shadow: 0 0 20px rgba(91, 192, 222, 0.3);
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 1.3rem;
+      background: linear-gradient(135deg, #5bc0de 0%, #2ecc71 100%);
+      color: #000;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
       font-size: 1.1rem;
     }
+
+    .submit-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(91, 192, 222, 0.6);
+    }
+
+    /* ========== FOOTER ========== */
+    #footer {
+      background: linear-gradient(135deg, rgba(91, 192, 222, 0.1) 0%, rgba(46, 204, 113, 0.05) 100%);
+      border-top: 2px solid rgba(91, 192, 222, 0.3);
+      padding: 4rem 2rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      #header { padding: 0 1.5rem; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-icon { font-size: 4rem; }
+      .section-title { font-size: 2rem; }
+      .opportunities-grid,
+      .methods-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-container { padding: 2rem; }
+    }
+
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-container {
+  text-align: center;
+}
+
+.robot-icon {
+  font-size: 5rem;
+  animation: robotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes robotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.loading-text {
+  color: #5bc0de;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 0.2em;
+}
+
+.progress-bar {
+  width: 300px;
+  height: 4px;
+  background: rgba(91, 192, 222, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5bc0de, #2ecc71);
+  animation: progressLoad 2s ease-out forwards;
+}
+
+@keyframes progressLoad {
+  0% { width: 0%; }
+  100% { width: 100%; }
+} 
+
   </style>
 </head>
 
 <body class="is-preload">
+
+  <!-- Animated Background -->
+  <div class="contact-bg"></div>
+  <div class="pulse-rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+
   <div id="page-wrapper">
 
     <!-- Header -->
@@ -222,143 +652,134 @@
       </div>
     </nav>
 
-    <!-- Main Content -->
-    <section id="wrapper">
-      
-      <!-- Hero Section -->
-      <div class="wrapper">
-        <div class="inner">
-          <div class="contact-hero">
-            <h2 class="major">Let's Connect</h2>
-            <p>
-              I'm always interested in discussing robotics, automation systems, 
-              and engineering opportunities. Whether you're recruiting, collaborating, 
-              or just want to talk technical – reach out!
-            </p>
-          </div>
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <div class="hero-icon">📬</div>
+      <h1 class="hero-title">Let's Connect</h1>
+      <p class="hero-description">
+        I'm always interested in discussing about robotics, automation systems, and engineering opportunities. 
+        Whether you're recruiting, collaborating, or just want to talk technical—reach out, don't be shy.
+      </p>
 
-          <!-- Availability Status -->
-          <div class="availability-status">
-            <span class="status-dot"></span>
-            <strong>Currently Available for:</strong> Co-op positions, project collaborations, 
-            and technical discussions
-          </div>
+      <!-- Availability Status -->
+      <div class="availability-banner">
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          Currently Available
+        </div>
+        <p class="availability-text">
+          Co-op positions • Project collaborations • Technical discussions
+        </p>
+      </div>
+    </section>
 
-          <!-- What I'm Looking For -->
-          <div class="looking-for-section">
-            <h3>
-              🎯 What I'm Looking For
-            </h3>
-            
-            <div class="opportunities-grid">
-              <div class="opportunity-card">
-                <span class="icon">🏢</span>
-                <h4>Co-op Positions</h4>
-                <p>
-                  Internships or co-op roles in robotics, mechatronics, or automation 
-                  where I can apply hands-on industrial experience to engineering challenges.
-                </p>
-              </div>
+    <!-- What I'm Looking For -->
+    <section class="opportunities-section">
+      <h2 class="section-title">What I'm Looking For</h2>
+      <p class="section-subtitle">Areas where I can contribute and grow</p>
 
-              <div class="opportunity-card">
-                <span class="icon">🤝</span>
-                <h4>Project Collaborations</h4>
-                <p>
-                  Working with other engineers on robotics projects, especially in 
-                  autonomous systems, embedded control, or industrial automation.
-                </p>
-              </div>
+      <div class="opportunities-grid">
+        <div class="opportunity-card">
+          <span class="opportunity-icon">🏢</span>
+          <h3>Co-op Positions</h3>
+          <p>
+            Internships or co-op roles in robotics, mechatronics, automation, or embadded system
+            where I can apply hands-on industrial experience to engineering challenges.
+          </p>
+        </div>
 
-              <div class="opportunity-card">
-                <span class="icon">💬</span>
-                <h4>Technical Discussions</h4>
-                <p>
-                  Always happy to discuss subsumption architectures, sensor integration, 
-                  PLC systems, or real-world robotics troubleshooting.
-                </p>
-              </div>
+        <div class="opportunity-card">
+          <span class="opportunity-icon">🤝</span>
+          <h3>Project Collaborations</h3>
+          <p>
+            Working with other engineers on robotics projects, especially in 
+            autonomous systems, embedded control, or industrial automation etc.
+          </p>
+        </div>
 
-              <div class="opportunity-card">
-                <span class="icon">📚</span>
-                <h4>Mentorship & Learning</h4>
-                <p>
-                  Seeking guidance from experienced engineers and opportunities to 
-                  learn from those working on advanced robotics systems.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="opportunity-card">
+          <span class="opportunity-icon">💬</span>
+          <h3>Technical Discussions</h3>
+          <p>
+            Always happy to discuss subsumption architectures, sensor integration, 
+            PLC systems, or real-world robotics troubleshooting.
+          </p>
+        </div>
 
-          <!-- Best Ways to Reach Me -->
-          <h2 class="major" style="text-align: center; margin-top: 4rem;">
-            Best Ways to Reach Me
-          </h2>
-
-          <div class="contact-methods">
-            
-            <!-- Email -->
-            <div class="contact-method">
-              <div class="icon-circle">📧</div>
-              <h3>Email</h3>
-              <p>For detailed inquiries, project discussions, or formal opportunities</p>
-              <a href="mailto:ibnoury17@gmail.com" class="button primary">
-                ibnoury17@gmail.com
-              </a>
-              <span class="response-badge">Response: 24-48 hours</span>
-            </div>
-
-            <!-- LinkedIn -->
-            <div class="contact-method">
-              <div class="icon-circle">💼</div>
-              <h3>LinkedIn</h3>
-              <p>Professional networking, quick messages, and staying connected</p>
-              <a href="https://www.linkedin.com/in/mouhameth-ba-588b82207/" 
-                 target="_blank" 
-                 class="button primary">
-                Connect on LinkedIn
-              </a>
-              <span class="response-badge">Response: 12-24 hours</span>
-            </div>
-
-          </div>
-
-          <!-- Alternative: Contact Form (Optional) -->
-          <div style="margin-top: 4rem;">
-            <h3 class="major" style="text-align: center;">Quick Message</h3>
-            <p style="text-align: center; color: #999; margin-bottom: 2rem;">
-              Prefer a form? Send me a message below and I'll get back to you soon.
-            </p>
-
-            <!-- IMPORTANT: Replace action with Formspree or similar -->
-            <form method="post" action="https://formspree.io/f/xnjnaqjn">
-              <div class="fields">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input type="text" name="name" id="name" required />
-                </div>
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" required />
-                </div>
-                <div class="field">
-                  <label for="subject">Subject</label>
-                  <input type="text" name="subject" id="subject" />
-                </div>
-                <div class="field">
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" rows="6" required></textarea>
-                </div>
-              </div>
-              <ul class="actions" style="justify-content: center;">
-                <li><input type="submit" value="Send Message" class="primary" /></li>
-              </ul>
-            </form>
-
-          </div>
-
+        <div class="opportunity-card">
+          <span class="opportunity-icon">📚</span>
+          <h3>Mentorship & Learning</h3>
+          <p>
+            Seeking guidance from experienced engineers and opportunities to 
+            learn from those working on advanced robotics systems.
+          </p>
         </div>
       </div>
+    </section>
 
+    <!-- Contact Methods -->
+    <section class="contact-methods">
+      <h2 class="section-title">Best Ways to Reach Me</h2>
+
+      <div class="methods-grid">
+        <!-- Email -->
+        <div class="contact-method">
+          <div class="method-icon-circle">📧</div>
+          <h3>Email</h3>
+          <p>
+            For detailed inquiries, project discussions, or formal opportunities
+          </p>
+          <a href="mailto:ibnoury17@gmail.com" class="contact-button">
+            ibnoury17@gmail.com
+          </a>
+          <span class="response-time">⚡ Response: 24-48 hours</span>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="contact-method">
+          <div class="method-icon-circle">💼</div>
+          <h3>LinkedIn</h3>
+          <p>
+            Professional networking, quick messages, and staying connected
+          </p>
+          <a href="https://www.linkedin.com/in/mouhameth-ba-588b82207/" 
+             target="_blank" 
+             class="contact-button">
+            Connect on LinkedIn
+          </a>
+          <span class="response-time">⚡ Response: 12-24 hours</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+      <div class="form-container">
+        <h3>Quick Message</h3>
+        <p class="form-description">
+          Prefer a form? Send me a message below and I'll get back to you soon.
+        </p>
+
+        <form method="post" action="https://formspree.io/f/xnjnaqjn">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" id="subject" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="6" required></textarea>
+          </div>
+          <input type="submit" value="Send Message" class="submit-button" />
+        </form>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -370,14 +791,12 @@
             <a href="mailto:ibnoury17@gmail.com">ibnoury17@gmail.com</a>
           </li>
           <li class="icon brands fa-linkedin">
-            <a href="https://www.linkedin.com/in/mouhameth-ba-588b82207/" target="_blank">
-              LinkedIn Profile
-            </a>
+            <a href="https://www.linkedin.com/in/mouhameth-ba-588b82207/" target="_blank">LinkedIn</a>
           </li>
         </ul>
         <ul class="copyright">
           <li>&copy; Mouhameth Ba. All rights reserved.</li>
-          <li>Dina metti, waaye dinagnu am ndam</li>
+          <li>Dina metti, waaye dinagnu ci Gueneu</li>
         </ul>
       </div>
     </section>
@@ -391,5 +810,34 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('preloader').classList.add('hidden');
+  }, 2000); // 2 second delay
+});
+</script> 
+
+<!-- Loading Screen -->
+<div id="preloader">
+  <div class="loader-container">
+    <div class="robot-icon">💬</div>
+    <div class="loading-text">INITIALIZING SYSTEMS...</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
